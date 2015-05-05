@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>D3 bars</title>
+        <script src="script/d3.v3.min.js" charset="utf-8"></script>
+        <style type="text/css">
+            .bar {
+                display: inline-block;
+                width: 20px;
+                height: 75px;
+                background-color: lightgray;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+
+
+
+//            var dataset = [1,5,9,15,23];
+            var dataset = [];
+
+            for (var i = 0; i<25; i++) {
+                    var newNumber = Math.round(Math.random() * 30);
+                    dataset.push(newNumber);
+                }
+
+            var w = 500;
+            var h = 100;
+            var barPadding = 2;
+            var bgColor= "lightgray";
+
+
+            var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+            svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i) {
+                return i * 21;
+            })
+            .attr("y", function (d) {
+                return h-d*2;
+            })
+            .attr("width", 20)
+            .attr("height", 100)
+            .attr("fill", bgColor);
+
+            var txtPage = d3.select("body")
+            .append("p")
+            .data(dataset)
+            .text(function(d){
+                return dataset;
+            });
+
+
+        </script>
+
+    </body>
